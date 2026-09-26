@@ -1,0 +1,141 @@
+{
+  "project": "NEER — FlashFlood Prediction System",
+  "version": "1.0.0",
+  "study_area_default": "INDIA_NATIONAL",
+  "target_crs": "EPSG:4326",
+  "target_resolution_meters": 30,
+  "factors": [
+    {
+      "key": "elevation",
+      "name": "Elevation",
+      "meaning": "Digital Elevation Model height above sea level. Low elevation basins retain surface runoff rapidly.",
+      "unit": "m",
+      "format": "Raster (.tif)",
+      "preprocessing": "Reproject to EPSG:4326, fill sinks via hydrologic DEM filtering, resample to 30m cell resolution.",
+      "data_source": "Source not connected — awaiting verified dataset",
+      "nodata_rule": "-9999 replaced with mean elevation of adjacent cells",
+      "validation_rule": "Range: -10m to 8848m",
+      "status": "AWAITING_VERIFIED_DATASET"
+    },
+    {
+      "key": "slope",
+      "name": "Slope",
+      "meaning": "Terrain incline angle. Flat terrain (0°-5°) restricts drainage speed, accelerating ponding.",
+      "unit": "°",
+      "format": "Raster (.tif)",
+      "preprocessing": "Derived from DEM using 3x3 Sobel directional gradient calculations.",
+      "data_source": "Source not connected — awaiting verified dataset",
+      "nodata_rule": "-9999 replaced with zero slope fallback",
+      "validation_rule": "Range: 0° to 90°",
+      "status": "AWAITING_VERIFIED_DATASET"
+    },
+    {
+      "key": "distToRiver",
+      "name": "Distance to River",
+      "meaning": "Euclidean spatial distance to primary river channels. Buffer zones < 500m face severe inundation risk.",
+      "unit": "m",
+      "format": "Vector (.shp / GeoJSON) resampled to Raster (.tif)",
+      "preprocessing": "Euclidean distance raster grid calculation from polyline river networks.",
+      "data_source": "Source not connected — awaiting verified dataset",
+      "nodata_rule": "Cap maximum distance at 50,000m",
+      "validation_rule": "Range: 0m to 50,000m",
+      "status": "AWAITING_VERIFIED_DATASET"
+    },
+    {
+      "key": "distToStream",
+      "name": "Distance to Stream",
+      "meaning": "Proximity to secondary streams, canals, and seasonal drainage lines.",
+      "unit": "m",
+      "format": "Vector (.shp / GeoJSON) resampled to Raster (.tif)",
+      "preprocessing": "Extract stream network from DEM using flow accumulation threshold > 1000 cells; compute distance raster.",
+      "data_source": "Source not connected — awaiting verified dataset",
+      "nodata_rule": "Cap maximum distance at 25,000m",
+      "validation_rule": "Range: 0m to 25,000m",
+      "status": "AWAITING_VERIFIED_DATASET"
+    },
+    {
+      "key": "distToRoad",
+      "name": "Distance to Road",
+      "meaning": "Impervious transportation infrastructure blocking natural drainage networks.",
+      "unit": "m",
+      "format": "Vector (.shp / GeoJSON) resampled to Raster (.tif)",
+      "preprocessing": "Euclidean distance grid from road polyline vectors.",
+      "data_source": "Source not connected — awaiting verified dataset",
+      "nodata_rule": "Cap maximum distance at 20,000m",
+      "validation_rule": "Range: 0m to 20,000m",
+      "status": "AWAITING_VERIFIED_DATASET"
+    },
+    {
+      "key": "lulc",
+      "name": "Land Cover / LULC",
+      "meaning": "Land Use & Land Cover classification (Built-up, Waterbodies, Agriculture, Dense Forest).",
+      "unit": "Class Category",
+      "format": "Categorical Raster (.tif)",
+      "preprocessing": "Reclassify satellite land cover classes to numerical impermeability ratings.",
+      "data_source": "Source not connected — awaiting verified dataset",
+      "nodata_rule": "Default to Unclassified Class 0",
+      "validation_rule": "Categorical IDs 1 to 12",
+      "status": "AWAITING_VERIFIED_DATASET"
+    },
+    {
+      "key": "aspect",
+      "name": "Aspect",
+      "meaning": "Compass direction slope faces (0°-360°), governing solar radiation and soil drying rates.",
+      "unit": "°",
+      "format": "Raster (.tif)",
+      "preprocessing": "Derived from DEM directional derivative vectors.",
+      "data_source": "Source not connected — awaiting verified dataset",
+      "nodata_rule": "-1 for flat terrain without orientation",
+      "validation_rule": "Range: -1° to 360°",
+      "status": "AWAITING_VERIFIED_DATASET"
+    },
+    {
+      "key": "twi",
+      "name": "Topographic Wetness Index (TWI)",
+      "meaning": "twi = ln(a / tan b). Quantifies topographic control on hydrological processes and soil saturation.",
+      "unit": "index",
+      "format": "Raster (.tif)",
+      "preprocessing": "Compute specific catchment area (a) via D8 flow direction and divide by tangent slope (b).",
+      "data_source": "Source not connected — awaiting verified dataset",
+      "nodata_rule": "Set minimum TWI to 0.1",
+      "validation_rule": "Range: 0 to 30",
+      "status": "AWAITING_VERIFIED_DATASET"
+    },
+    {
+      "key": "spi",
+      "name": "Stream Power Index (SPI)",
+      "meaning": "spi = a * tan b. Measures erosive power of flowing surface water.",
+      "unit": "index",
+      "format": "Raster (.tif)",
+      "preprocessing": "Multiply specific catchment area by slope gradient.",
+      "data_source": "Source not connected — awaiting verified dataset",
+      "nodata_rule": "Set minimum SPI to 0.0",
+      "validation_rule": "Range: 0 to 100",
+      "status": "AWAITING_VERIFIED_DATASET"
+    },
+    {
+      "key": "profileCurvature",
+      "name": "Profile Curvature",
+      "meaning": "Curvature parallel to maximum slope direction. Governs flow acceleration or deceleration.",
+      "unit": "index",
+      "format": "Raster (.tif)",
+      "preprocessing": "Second-order spatial derivative of DEM parallel to flow.",
+      "data_source": "Source not connected — awaiting verified dataset",
+      "nodata_rule": "Set NoData cells to 0.0 (linear slope)",
+      "validation_rule": "Range: -1.0 to +1.0",
+      "status": "AWAITING_VERIFIED_DATASET"
+    },
+    {
+      "key": "planCurvature",
+      "name": "Plan Curvature",
+      "meaning": "Curvature perpendicular to maximum slope direction. Governs flow convergence or divergence.",
+      "unit": "index",
+      "format": "Raster (.tif)",
+      "preprocessing": "Second-order spatial derivative of DEM perpendicular to flow.",
+      "data_source": "Source not connected — awaiting verified dataset",
+      "nodata_rule": "Set NoData cells to 0.0 (planar slope)",
+      "validation_rule": "Range: -1.0 to +1.0",
+      "status": "AWAITING_VERIFIED_DATASET"
+    }
+  ]
+}

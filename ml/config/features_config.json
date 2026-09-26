@@ -1,0 +1,131 @@
+{
+  "system": "NEER Flood Susceptibility Prediction System",
+  "feature_count": 11,
+  "features": [
+    {
+      "key": "elevation",
+      "name": "Elevation",
+      "unit": "meters",
+      "data_type": "float",
+      "min_val": -10.0,
+      "max_val": 8848.0,
+      "description": "Digital Elevation Model height above mean sea level",
+      "required": true
+    },
+    {
+      "key": "slope",
+      "name": "Slope",
+      "unit": "degrees",
+      "data_type": "float",
+      "min_val": 0.0,
+      "max_val": 90.0,
+      "description": "Terrain slope steepness in degrees",
+      "required": true
+    },
+    {
+      "key": "distance_to_river",
+      "name": "Distance to River",
+      "unit": "meters",
+      "data_type": "float",
+      "min_val": 0.0,
+      "max_val": 100000.0,
+      "description": "Proximity to nearest major river channel",
+      "required": true
+    },
+    {
+      "key": "distance_to_stream",
+      "name": "Distance to Stream",
+      "unit": "meters",
+      "data_type": "float",
+      "min_val": 0.0,
+      "max_val": 100000.0,
+      "description": "Proximity to nearest tributary stream network",
+      "required": true
+    },
+    {
+      "key": "distance_to_road",
+      "name": "Distance to Road",
+      "unit": "meters",
+      "data_type": "float",
+      "min_val": 0.0,
+      "max_val": 100000.0,
+      "description": "Distance to nearest transportation road infrastructure",
+      "required": true
+    },
+    {
+      "key": "land_cover",
+      "name": "Land Cover/LULC",
+      "unit": "categorical",
+      "data_type": "string",
+      "allowed_categories": [
+        "Water Body",
+        "Wetland",
+        "Agricultural Land",
+        "Built-Up Area",
+        "Forest",
+        "Barren Land",
+        "Grassland",
+        "Shrubland"
+      ],
+      "description": "Land Use Land Cover classification class",
+      "required": true
+    },
+    {
+      "key": "aspect",
+      "name": "Aspect",
+      "unit": "degrees",
+      "data_type": "float",
+      "min_val": 0.0,
+      "max_val": 360.0,
+      "description": "Compass direction that slope faces",
+      "required": true
+    },
+    {
+      "key": "twi",
+      "name": "Topographic Wetness Index (TWI)",
+      "unit": "index",
+      "data_type": "float",
+      "min_val": 0.0,
+      "max_val": 30.0,
+      "description": "Quantifies topographic control on hydrological processes",
+      "required": true
+    },
+    {
+      "key": "spi",
+      "name": "Stream Power Index (SPI)",
+      "unit": "index",
+      "data_type": "float",
+      "min_val": -10.0,
+      "max_val": 50.0,
+      "description": "Measures erosive power of flowing water",
+      "required": true
+    },
+    {
+      "key": "profile_curvature",
+      "name": "Profile Curvature",
+      "unit": "rate",
+      "data_type": "float",
+      "min_val": -10.0,
+      "max_val": 10.0,
+      "description": "Curvature parallel to maximum slope direction (accelerates flow)",
+      "required": true
+    },
+    {
+      "key": "plan_curvature",
+      "name": "Plan Curvature",
+      "unit": "rate",
+      "data_type": "float",
+      "min_val": -10.0,
+      "max_val": 10.0,
+      "description": "Curvature perpendicular to maximum slope direction (convergences flow)",
+      "required": true
+    }
+  ],
+  "target_variable": {
+    "key": "flood_occurrence",
+    "name": "Flood Occurrence",
+    "data_type": "int",
+    "allowed_values": [0, 1],
+    "description": "Historical binary flood inventory label (0 = No Flood, 1 = Flood)"
+  }
+}

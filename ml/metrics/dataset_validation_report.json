@@ -1,0 +1,7 @@
+{
+  "status": "UNAVAILABLE",
+  "message": "Verified training dataset is not available.",
+  "dataset_path": "C:\\Users\\ASUS\\OneDrive\\Desktop\\final rapidsq 179\\ml\\data\\flood_inventory_dataset.csv",
+  "is_valid": false,
+  "checks": {}
+}

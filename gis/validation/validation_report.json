@@ -1,0 +1,78 @@
+{
+  "timestamp": "2026-09-16 20:51:24.960394",
+  "overall_status": "AWAITING_VERIFIED_DATASETS",
+  "total_required_factors": 11,
+  "factors_summary": {
+    "elevation": {
+      "status": "MISSING",
+      "message": "Processed GeoTIFF raster file absent in gis/data/processed/",
+      "source": "Source not connected \u2014 awaiting verified dataset."
+    },
+    "slope": {
+      "status": "MISSING",
+      "message": "Processed GeoTIFF raster file absent in gis/data/processed/",
+      "source": "Source not connected \u2014 awaiting verified dataset."
+    },
+    "distToRiver": {
+      "status": "MISSING",
+      "message": "Processed GeoTIFF raster file absent in gis/data/processed/",
+      "source": "Source not connected \u2014 awaiting verified dataset."
+    },
+    "distToStream": {
+      "status": "MISSING",
+      "message": "Processed GeoTIFF raster file absent in gis/data/processed/",
+      "source": "Source not connected \u2014 awaiting verified dataset."
+    },
+    "distToRoad": {
+      "status": "MISSING",
+      "message": "Processed GeoTIFF raster file absent in gis/data/processed/",
+      "source": "Source not connected \u2014 awaiting verified dataset."
+    },
+    "lulc": {
+      "status": "MISSING",
+      "message": "Processed GeoTIFF raster file absent in gis/data/processed/",
+      "source": "Source not connected \u2014 awaiting verified dataset."
+    },
+    "aspect": {
+      "status": "MISSING",
+      "message": "Processed GeoTIFF raster file absent in gis/data/processed/",
+      "source": "Source not connected \u2014 awaiting verified dataset."
+    },
+    "twi": {
+      "status": "MISSING",
+      "message": "Processed GeoTIFF raster file absent in gis/data/processed/",
+      "source": "Source not connected \u2014 awaiting verified dataset."
+    },
+    "spi": {
+      "status": "MISSING",
+      "message": "Processed GeoTIFF raster file absent in gis/data/processed/",
+      "source": "Source not connected \u2014 awaiting verified dataset."
+    },
+    "profileCurvature": {
+      "status": "MISSING",
+      "message": "Processed GeoTIFF raster file absent in gis/data/processed/",
+      "source": "Source not connected \u2014 awaiting verified dataset."
+    },
+    "planCurvature": {
+      "status": "MISSING",
+      "message": "Processed GeoTIFF raster file absent in gis/data/processed/",
+      "source": "Source not connected \u2014 awaiting verified dataset."
+    }
+  },
+  "missing_raw_files": [],
+  "missing_processed_rasters": [
+    "elevation",
+    "slope",
+    "distToRiver",
+    "distToStream",
+    "distToRoad",
+    "lulc",
+    "aspect",
+    "twi",
+    "spi",
+    "profileCurvature",
+    "planCurvature"
+  ],
+  "warnings": [],
+  "data_source_notice": "Source not connected \u2014 awaiting verified dataset."
+}
